@@ -1,0 +1,43 @@
+﻿  a1ms2.c
+D:\Source\IPC 144\A1MS2\a1ms2.c(23,20): error C2079: 'pets' uses undefined struct 'Patient'
+D:\Source\IPC 144\A1MS2\a1ms2.c(29,5): error C2078: too many initializers
+D:\Source\IPC 144\A1MS2\a1ms2.c(23,20): error C2078: too many initializers
+D:\Source\IPC 144\A1MS2\a1ms2.c(30,30): warning C4047: 'initializing': 'Patient *' differs in levels of indirection from 'int'
+  clinic.c
+D:\Source\IPC 144\A1MS2\clinic.c(44,25): error C2037: left of 'name' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(44,40): error C2037: left of 'patientNumber' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(42,16): warning C4473: 'printf' : not enough arguments passed for format string
+D:\Source\IPC 144\A1MS2\clinic.c(42,16): message : placeholders and their parameters expect 2 variadic arguments, but 0 were provided
+D:\Source\IPC 144\A1MS2\clinic.c(42,16): message : the missing variadic argument 1 is required by format string '%s'
+D:\Source\IPC 144\A1MS2\clinic.c(45,31): error C2037: left of 'phone' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(45,9): error C2198: 'displayFormattedPhone': too few arguments for call
+D:\Source\IPC 144\A1MS2\clinic.c(46,27): error C2037: left of 'phone' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(46,16): warning C4473: 'printf' : not enough arguments passed for format string
+D:\Source\IPC 144\A1MS2\clinic.c(46,16): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+D:\Source\IPC 144\A1MS2\clinic.c(46,16): message : the missing variadic argument 1 is required by format string '%s'
+D:\Source\IPC 144\A1MS2\clinic.c(50,31): error C2037: left of 'patientNumber' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(51,13): error C2037: left of 'name' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(50,16): warning C4473: 'printf' : not enough arguments passed for format string
+D:\Source\IPC 144\A1MS2\clinic.c(50,16): message : placeholders and their parameters expect 2 variadic arguments, but 0 were provided
+D:\Source\IPC 144\A1MS2\clinic.c(50,16): message : the missing variadic argument 1 is required by format string '%05d'
+D:\Source\IPC 144\A1MS2\clinic.c(52,31): error C2037: left of 'phone' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(52,9): error C2198: 'displayFormattedPhone': too few arguments for call
+D:\Source\IPC 144\A1MS2\clinic.c(53,27): error C2037: left of 'phone' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(53,16): warning C4473: 'printf' : not enough arguments passed for format string
+D:\Source\IPC 144\A1MS2\clinic.c(53,16): message : placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+D:\Source\IPC 144\A1MS2\clinic.c(53,16): message : the missing variadic argument 1 is required by format string '%s'
+D:\Source\IPC 144\A1MS2\clinic.c(154,27): error C2037: left of 'patientNumber' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(154,51): error C2037: left of 'name' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(151,16): warning C4473: 'printf' : not enough arguments passed for format string
+D:\Source\IPC 144\A1MS2\clinic.c(151,16): message : placeholders and their parameters expect 2 variadic arguments, but 0 were provided
+D:\Source\IPC 144\A1MS2\clinic.c(151,16): message : the missing variadic argument 1 is required by format string '%05d'
+D:\Source\IPC 144\A1MS2\clinic.c(156,31): error C2037: left of 'phone' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(156,9): error C2198: 'displayFormattedPhone': too few arguments for call
+D:\Source\IPC 144\A1MS2\clinic.c(169,26): error C2037: left of 'name' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(169,42): warning C4047: 'function': 'char *' differs in levels of indirection from 'int'
+D:\Source\IPC 144\A1MS2\clinic.c(169,41): warning C4024: 'inputCString': different types for formal and actual parameter 1
+D:\Source\IPC 144\A1MS2\clinic.c(169,13): error C2198: 'inputCString': too few arguments for call
+D:\Source\IPC 144\A1MS2\clinic.c(175,29): error C2037: left of 'phone' specifies undefined struct/union 'Patient'
+D:\Source\IPC 144\A1MS2\clinic.c(175,13): error C2198: 'inputPhoneData': too few arguments for call
+  core.c
+  Generating Code...
