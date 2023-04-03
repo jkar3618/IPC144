@@ -42,7 +42,7 @@ piece of work is entirely of my own creation.
 // ToDo:
 struct Phone
 {
-    char type[PHONE_DESC_LEN + 1];
+    char description[PHONE_DESC_LEN + 1];
     char number[PHONE_LEN + 1];
 
 };
@@ -51,8 +51,8 @@ struct Phone
 // ToDo:
 struct Patient
 {
-    int patientNum;
-    char petName[NAME_LEN + 1];
+    int patientNumber;
+    char name[NAME_LEN + 1];
     struct Phone phone;
 };
 
