@@ -19,6 +19,7 @@ piece of work is entirely of my own creation.
 #include "core.h"
 // include the user library "clinic" where the function prototypes are declared
 #include "clinic.h"
+#include <string.h>
 
 
 //////////////////////////////////////

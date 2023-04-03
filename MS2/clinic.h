@@ -40,10 +40,21 @@ piece of work is entirely of my own creation.
 
 // Data type: Phone
 // ToDo:
+struct Phone
+{
+    char type[PHONE_DESC_LEN + 1];
+    char number[PHONE_LEN + 1];
 
+};
 
 // Data type: Patient 
 // ToDo:
+struct Patient
+{
+    int patientNum;
+    char petName[NAME_LEN + 1];
+    struct Phone phone;
+};
 
 
 // ClinicData type: Provided to student
