@@ -1,0 +1,96 @@
+///////////////////////////////////////////////////////////////////////////
+                               Reflection
+                             Workshop - #7
+Full Name  : Taehwa Hong
+Student ID#: 132546227
+
+Authenticity Declaration:
+I declare this submission is the result of my own work and has not been
+shared with any other student or 3rd party content provider. This submitted
+piece of work is entirely of my own creation.
+///////////////////////////////////////////////////////////////////////////
+
+
+1. Were you successful in coding non-repetitive sections of logic in the game play portion of this workshop (drawing
+of the ruler, board, player position, etc.)? If so, how did you accomplish this (don’t provide your code in your
+answer)? If not, why? Explain precisely what you struggled with and refer to the logic of the workshop to justify
+your answer.
+
+	- In my case, the board and history parts are the most difficult section. I took very long time to store values in the board array. 
+It printed '-' even there are Bomb or Treasure or Both of them even nothing there.my codes were very messy. 
+So, I rebuild the code step by step from the begining. while I do again, I realized the way how to store value in the array.
+The value should be stored after user input.
+
+
+2. Explain how the use of structures simplified your program. Provide proof of your argument by contrasting the
+alternatives – do not include code in your answer – you must explain in simple terms the impact the concept of
+structures has in our programming strategies.
+
+	- Structure is very efficiency to maintain arrays . Also, when using structure, 
+variables and arrays can be differentiated easily because structure difine a group of vaiables as a single object.
+Structure would helps to reduce amount of the code. Then, readability will be improved.
+
+
+
+3. Examine your code and determine the maximum number of levels of nesting (deepest) you ended up using in your
+program logic. Provide a simple indented outline that illustrates your answer (copy only the construct line for each
+level and do not include all the code within unless there is another nested construct). For example, two levels of
+nesting as an outline:
+
+do
+{
+  if(!(playerInfo.move > 0 && playerInfo.move <= MAX_MOVE))
+  {
+
+  }
+  else
+  {
+    if(gameInfo.history[playerInfo.move - 1] == 1)
+	{
+
+	}
+	else if (gameInfo.treasure[playerInfo.move - 1] == 1)
+	{
+
+	}
+	else if (gameInfo.bomb[playerInfo.move - 1] == 1)
+	{
+
+	}
+	else
+	{
+
+	}
+   }
+
+    for(i = 0; i < playerInfo.move; i++)
+    {
+	if (i == playerInfo.move - 1)
+	{
+
+	}
+	else
+	{
+
+	}
+    }
+
+    for (i = 0; i < gameInfo.length; i++)
+    {
+	if ((i + 1) % 10 == 0)
+	{
+
+	}
+	else
+	{
+
+	}
+    }
+
+    for (i = 0; i < gameInfo.length; i++)
+    {
+
+    }
+  }
+} while (!validvalue)
+
