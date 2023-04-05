@@ -239,10 +239,13 @@ void searchPatientData(const struct Patient patient[], int max)
 		if (number == 1)
 		{
 			searchPatientByPatientNumber(patient, max);
+			clearInputBuffer();
+			suspend();
 		}
 		else if (number == 2)
 		{
 			searchPatientByPhoneNumber(patient, max);
+			suspend();
 		}
 
 	} while (number != 0);
@@ -253,7 +256,8 @@ void searchPatientData(const struct Patient patient[], int max)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void addPatient(struct Patient patient[], int max)
 {
-
+	inputPatient(patient);
+	inputPhoneData(patient);
 }
 
 
@@ -291,13 +295,18 @@ void searchPatientByPatientNumber(const struct Patient patient[], int max)
 	if (findPatientIndexByPatientNum(patientNumber, patient, max) != -1)
 	{
 		patientData = findPatientIndexByPatientNum(patientNumber, patient, max);
-		printf("Name  : %s\n", patient->name);
-		printf("Number: %d\n", patient->patientNumber);
+		printf("Name  : %s\n", patient[patientData].name);
+		printf("Number: %05d\n", patient[patientData].patientNumber);
 		printf("Phone : ");
 		displayFormattedPhone(patient[patientData].phone.number);
-		printf(" %s", displayFormattedPhone);
+		printf(" (%s)\n", patient[patientData].phone);
+		putchar('\n');
 	}
-	
+	else
+	{
+		printf("*** No records found ***\n\n");
+	}
+
 
 }
 
@@ -306,10 +315,32 @@ void searchPatientByPatientNumber(const struct Patient patient[], int max)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void searchPatientByPhoneNumber(const struct Patient patient[], int max)
 {
-	int phoneNum;
+	int i, count = 0;
+	char phoneNum[PHONE_LEN + 1] = { 0 };
 
 	printf("Search by phone number: ");
-	scanf("%d", &phoneNum);
+	scanf("%s", phoneNum);
+	clearInputBuffer();
+	putchar('\n');
+
+	displayPatientTableHeader();
+
+	for (i = 0; i < PHONE_LEN + 1; i++)
+	{
+		if (strcmp(patient[i].phone.number, phoneNum) == 0)
+		{
+			printf("%05d %-15s ", patient[i].patientNumber, patient[i].name);
+			displayFormattedPhone(patient[i].phone.number);
+			printf(" (%s)\n", patient[i].phone.description);
+			count++;
+		}
+	}
+
+	if (count == 0)
+	{
+		printf("*** No records found ***\n\n");
+	}
+
 	putchar('\n');
 
 }
@@ -332,15 +363,12 @@ int findPatientIndexByPatientNum(int patientNumber,
 
 	for (i = 0; i < max; i++)
 	{
-		if (patient == patient[i].patientNumber)
+		if (patient[i].patientNumber == patientNumber)
 		{
 			return i;
 		}
-		else
-		{
-			return -1;
-		}
 	}
+	return -1;
 }
 
 
@@ -352,7 +380,17 @@ int findPatientIndexByPatientNum(int patientNumber,
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void inputPatient(struct Patient* patient)
 {
+	int patientNumber;
+	char name[NAME_LEN + 1] = { 0 };
 
+	printf("Patient Data Input\n"
+		"------------------\n");
+	printf("Number: ");
+	scanf("%d", &patientNumber);
+	printf("Name  : ");
+	scanf("%s", name);
+	clearInputBuffer();
+	putchar('\n');
 }
 
 
@@ -360,5 +398,22 @@ void inputPatient(struct Patient* patient)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void inputPhoneData(struct Phone* phone)
 {
+	int selection;
 
+	printf("Phone Information\n"
+		"-----------------\n");
+	printf("How will the patient like to be contacted?\n");
+	printf("1. Cell\n"
+		"2. Home\n"
+		"3. Work\n"
+		"4. TBD\n");
+	printf("Selection: ");
+	scanf("%d", &selection);
+	putchar('\n');
+
+	if (selection > 0 && selection < 5)
+	{
+		printf("*** New patient record added ***\n");
+	}
+	putchar('\n');
 }
