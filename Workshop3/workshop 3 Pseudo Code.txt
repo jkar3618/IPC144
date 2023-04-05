@@ -1,0 +1,238 @@
+
+A basic timer example....
+-----------------------------------------------------
+
+If we want to wait 20 seconds...
+
+1. declare startTime = 0
+2. declare currentTime = 0
+3. declare secondsDiff = 0
+4. declare timeToWait = 20 (seconds)
+
+5. Capture current time: 
+	startTime = (now)
+	currentTime = startTime
+
+6. Is secondsDiff equal to timeToWait?
+	NO:	a) update currentTime = (now)
+		b) How many seconds have past?
+			secondsDiff = currentTime - startTime
+		c) Return to step #6
+
+7. DISPLAY: Yeah you waited [timeToWait] seconds
+
+8. end.
+
+====================================================
+
+
+1. declare startTime = 0 (seconds)
+2. declare currentTime = 0 (seconds)
+3. declare secondsDiff = 0 (seconds)
+4. declare carLimit = 5 
+5. declare greenArrowT = 15 (seconds)
+6. declare yellowArrowT = 5 (seconds)
+7. declare solidGreenT = 45 (seconds)
+8. declare solidYellowT = 10 (seconds)
+9. declare solidRedT = 80 (seconds)
+10. declare redLightD = 0 (bool)
+11. declare yellowLightD = 0 (bool)
+12. declare greenLightD = 0 (bool)
+13. declare greenArrowD = 0 (bool)
+14. declare yellowArrowD = 0 (bool)
+15. declare interruptLight = 0 (bool)
+16. declare exitLight = 0 (bool)
+17. declare walkButton = 0 (bool)
+18. declare redTenT = 10 (seconds)
+19. declare carSensor (sensor)
+
+
+
+20. is exitLight = 0? (loop)
+		capture current time:
+			startTime = (now)
+			currentTime = startTime
+		set greenLightD = 1
+		set greenArrowD = 1
+		set secondsDiff = 0
+		is secondsDiff != greenArrowT (loop)
+			is interruptLight != 0 (loop)
+				wait for continuation or termination:
+					if continuation is true
+						set interruptLight = 0
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						return to step #20
+					if termination is true
+						set interruptLight = 0
+						set exitLight = 1 (protection)
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						go to step #END (PUT IN NUMBER)
+			update currentTime = (now)
+			secondsDiff = currentTime - startTime
+			return to step #(GREENARROWT)
+		
+		capture current time:
+			startTime = (now)
+			currentTime = startTime
+		set greenArrowD = 0
+		set yellowArrowD = 1
+		set secondsDiff = 0
+		is secondsDiff != yellowArrowT (loop)
+			is interruptLight != 0 (loop)
+				wait for continuation or termination:
+					if continuation is true
+						set interruptLight = 0
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						return to step #20
+					if termination is true
+						set interruptLight = 0
+						set exitLight = 1 (protection)
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						go to step #END (PUT IN NUMBER)
+			update currentTime = (now)
+			secondsDiff = currentTime - startTime
+			return to step #(AMBERARROWT)
+
+		capture current time:
+			startTime = (now)
+			currentTime = startTime
+		set amberArrowD = 0
+		set secondsDiff = 0
+		is secondsDiff != greenLightT (loop)
+			is interruptLight != 0 (loop)
+				wait for continuation or termination:
+					if continuation is true
+						set interruptLight = 0
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						return to step #20
+					if termination is true
+						set interruptLight = 0
+						set exitLight = 1 (protection)
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						go to step #END (PUT IN NUMBER)
+			update currentTime = (now)
+			secondsDiff = currentTime - startTime
+			return to step #(GREENLIGHTT)
+
+		capture current time:
+			startTime = (now)
+			currentTime = startTime
+		set greenLightD = 0
+		set yellowLightD = 1
+		set secondsDiff = 0
+		is secondsDiff != yellowLightT (loop)
+			is interruptLight != 0 (loop)
+				wait for continuation or termination:
+					if continuation is true
+						set interruptLight = 0
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						return to step #20
+					if termination is true
+						set interruptLight = 0
+						set exitLight = 1 (protection)
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						go to step #END (PUT IN NUMBER)
+			update currentTime = (now)
+			secondsDiff = currentTime - startTime
+			return to step #(YELLOWLIGHTT)
+
+		capture current time:
+			startTime = (now)
+			currentTime = startTime
+		set yellowLightD = 0
+		set redLightD = 1
+		set secondsDiff = 0
+		is secondsDiff != RedLightT (loop)
+			is interruptLight != 0 (loop)
+				wait for continuation or termination:
+					if continuation is true
+						set interruptLight = 0
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						return to step #20
+					if termination is true
+						set interruptLight = 0
+						set exitLight = 1 (protection)
+						set redLightD = 0
+						set yellowLightD = 0
+						set greenLightD = 0
+						set greenArrowD = 0
+						set amberArrowD = 0
+						go to step #END (PUT IN NUMBER)
+			is walkButton != 0?
+				is secondsDiff <= RedLightT - 10
+					go to step #(redTenT)
+			is carSensor >= carLimit?
+				is secondsDiff <= RedLightT - 10
+					go to step #(redTenT)
+			update currentTime = (now)
+			secondsDiff = currentTime - startTime
+			return to step #(REDLIGHTT)
+		is walkButton != 0? OR carSensor >= carLimit (condition)
+			capture current time:
+				startTime = (now)
+				currentTime = startTime
+			set secondsDiff = 0
+			is secondsDiff != RedTenT (loop)
+				is interruptLight != 0 (loop)
+					wait for continuation or termination:
+						if continuation is true
+							set interruptLight = 0
+							set redLightD = 0
+							set yellowLightD = 0
+							set greenLightD = 0
+							set greenArrowD = 0
+							set amberArrowD = 0
+							return to step #20
+						if termination is true
+						set interruptLight = 0
+							set exitLight = 1 (protection)
+							set redLightD = 0
+							set yellowLightD = 0
+							set greenLightD = 0
+							set greenArrowD = 0
+							set amberArrowD = 0
+							go to step #END (PUT IN NUMBER)
+				update currentTime = (now)
+				secondsDiff = currentTime - startTime
+				return to step #(REDTENT)
+		set RedLightD = 0
+		return to step #20 (beginning of big loop)
+.END
+		
+		
