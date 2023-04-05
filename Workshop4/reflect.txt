@@ -1,0 +1,97 @@
+///////////////////////////////////////////////////////////////////////////
+                               Reflection
+                             Workshop - #4
+Full Name  : Taehwa Hong
+Student ID#: 132546227
+
+Authenticity Declaration:
+I declare this submission is the result of my own work and has not been
+shared with any other student or 3rd party content provider. This submitted
+piece of work is entirely of my own creation.
+///////////////////////////////////////////////////////////////////////////
+
+1. With the completion of this workshop, you must have begun to appreciate why code formatting is important. 
+Explain how you made your code – especially the iteration and selection logic parts – easy to read and maintain.
+
+	- To make my code easy to read and maintain for the workshop, I declared variable names clearly and 
+	added comments in each loop of the function. I also separated different parts, such as the number of 
+	fruits needed and the number of fruits picked, with blank lines. I utilized different types of iterations, 
+	such as 'do while' and 'while,' to clearly distinguish between the prompts. Additionally, I applied a step-by-step 
+	method of reasoning when using conditional statements to make decisions based on specific conditions.
+
+2. Nested logic is an important feature of programming in any language. Identify and briefly discuss the biggest 
+impact on how this workshop could be coded if nesting were not possible.
+
+	- Nested logic is extremely useful for building and maintaining complex logic in code. 
+	One of the main benefits is the ability to concatenate functions, 
+	reducing the need for repetitive coding of iterations and selections. 
+	Without nested logic, the code would become lengthy and difficult to read and maintain due to the numerous functions 
+	and iterations.
+
+
+3. Consider the following scenario: you are programming logic that requires a user to input a value between 1 and 
+5, and for each value within that range, you had to perform something unique. You would have to apply 
+selection to validate the entered values so you can implement the given logic for a specific entered range value. 
+Explain why is it inefficient to achieve this using a series of “if” optional path constructs instead of the preferred 
+“if/else if…” alternative path logic?
+
+	- Using only 'if' statements is inefficient because I would need to manually input a value between 1 and 5 for each iteration. 
+	
+	for example, 
+		do
+		{
+			printf("enter number: ");
+			scanf("%d", &numebr);
+			
+			if( number == 1)
+			{
+			printf("Number %d is apples", number);
+			}
+		} while (number != 1)			
+
+		do
+		{
+			printf("enter number: ");
+			scanf("%d", &numebr);
+			
+			if( number == 2)
+			{
+			printf("Number %d is pears", number);
+			}
+		} while (number != 2)			
+	I need to code an example that iterates from 1 to 5. 
+	However, using "if/else if" statements enables the iteration to occur in a single loop, 
+	making it more efficient than using only 'if' statements. This results in shorter code.
+	
+	for example,
+		do
+		{
+			printf("enter number: ");
+			scanf("%d", &numebr);
+			
+			if (number == 1)
+			{
+			printf("Number %d is apples", number);
+			}
+
+			else if (number == 2)
+			{
+			printf("Number %d is pears", number);
+			}
+
+			else if (number == 3)
+			{
+			printf("Number %d is oranges", number);
+			}
+
+			else if (number == 4)
+			{
+			printf("Number %d is tomatoes", number);
+			}
+			else
+			{
+			number == 5;
+			printf("Number %d is cabbages", number);
+			}
+		} while (number > 0)			
+
