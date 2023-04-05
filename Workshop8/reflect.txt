@@ -1,0 +1,51 @@
+///////////////////////////////////////////////////////////////////////////
+                               Reflection
+                             Workshop - #8
+Full Name  : Taehwa Hong
+Student ID#: 132546227
+
+Authenticity Declaration:
+I declare this submission is the result of my own work and has not been
+shared with any other student or 3rd party content provider. This submitted
+piece of work is entirely of my own creation.
+///////////////////////////////////////////////////////////////////////////
+
+1. Several helper functions were designed to return values in two different ways (via an argument and/or by return).
+Explain at least one benefit of this “feature” and how it increases usability/flexibility and at least one negative
+reason why having functions designed to work in this way may not be desirable.
+
+	- The helper function by returning value does not need to pass the same argument. Also, it can be placed in multiple places in code. 
+It makes the code simple and easier readability. Helper function by passing an argument, it can be customized to suit my needs. 
+It is possible that the helper function by passing an argument can be used in various situations.
+
+2. According to the design principles for structured design, functions should be highly cohesive and have low
+coupling. Identify one function in the workshop that demonstrates less than perfect cohesion, and one function
+that demonstrates coupling that could be improved. For each identified function, briefly explain what you would
+do to improve them.
+
+	- The "start" function is highly cohesive because most functions are gathered to the "start" function. 
+On the other hand, converting functions "convertLbsKg", "convertLbsG", "convertLbs" and calculating functions "calculateServings", "calcultaeCostPerServing", "calculateCostPerCal" those functions are low coupling because  those functions do not have any function if they are not cohesive to "struct ReportData calculateReportData" 
+
+3. What advantages are there in passing structures to functions? Based on your readings this week (for next week’s
+topics) what could be done in the passing of this data to functions to make it more efficient? Explain how the
+“displayCatfoodData” function could be improved.
+
+	- Passing structures to functions is more efficient than passing individual elements of the structure. 
+It is possible that it needs more time and increases errors when passing individual elements of the structure pass each element separately. 
+moreover, passing structures to functions can reduce the amount of code. it makes to be easy to read. 
+
+My "displayCatfoodData" functions is:
+
+void displayCatFoodData(const int sku, const double* price, const double* weight, const int calories)
+{
+	printf("%07d %10.2lf %10.1lf %8d\n", sku, *price, *weight, calories);
+}
+
+
+However, It can be changed to:
+
+void displayCatFoodData(struct CatFoodInfo catFoodData)
+{
+	printf("%07d %10.2lf %10.1lf %8d\n", catFoodData.sku, catFoodData.price, catFoodData.weight, catFoodData.calories);
+}
+
