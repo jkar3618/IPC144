@@ -256,8 +256,31 @@ void searchPatientData(const struct Patient patient[], int max)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void addPatient(struct Patient patient[], int max)
 {
-	inputPatient(patient);
-	inputPhoneData(patient);
+	int i, storage = 0;
+
+	for (i = 0; i < max; i++)
+	{
+		if (patient[i].patientNumber != 0)
+		{
+			storage++;
+		}
+	}
+
+	if (max > storage)
+	{
+		patient[storage].patientNumber = nextPatientNumber(patient, max);
+		inputPatient(patient + storage);
+		printf("*** New patient record added ***\n");
+		putchar('\n');
+		clearInputBuffer();
+	}
+	else
+	{
+		printf("ERROR: Patient listing is FULL!\n\n");
+	}
+
+
+
 }
 
 
@@ -265,7 +288,21 @@ void addPatient(struct Patient patient[], int max)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void editPatient(struct Patient patient[], int max)
 {
+	int patientNumber, patientData;
+	printf("Enter the patient number: ");
+	scanf("%d", &patientNumber);
+	printf("\n");
 
+	if (findPatientIndexByPatientNum(patientNumber, patient, max) != -1)
+	{
+		patientData = findPatientIndexByPatientNum(patientNumber, patient, max);
+		menuPatientEdit(patient + patientData);
+	}
+	else
+	{
+		printf("ERROR: Patient record not found!\n");
+
+	}
 }
 
 
@@ -273,7 +310,49 @@ void editPatient(struct Patient patient[], int max)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void removePatient(struct Patient patient[], int max)
 {
+	int patientNumber, patientData;
+	char yesOrNo;
+	printf("Enter the patient number: ");
+	scanf("%d", &patientNumber);
+	putchar('\n');
 
+	if (findPatientIndexByPatientNum(patientNumber, patient, max) != -1)
+	{
+		patientData = findPatientIndexByPatientNum(patientNumber, patient, max);
+		printf("Name  : %s\n", patient[patientData].name);
+		printf("Number: %d\n", patient[patientData].patientNumber);
+		printf("Phone : ");
+		displayFormattedPhone(patient[patientData].phone.number);
+		printf(" (%s)\n", patient[patientData].phone.description);
+		
+		putchar('\n');
+
+		printf("Are you sure you want to remove this patient record? (y/n): ");
+		scanf(" %c", &yesOrNo);
+
+		if (yesOrNo == 'n' || yesOrNo == 'N')
+		{
+			printf("Operation aborted\n");
+			putchar('\n');
+			clearInputBuffer();
+
+		}
+		else
+		{
+			patient[patientData].patientNumber = 0;
+			printf("Patient record has been removed!\n\n");
+			clearInputBuffer();
+
+		}
+
+	}
+	else
+	{
+		printf("ERROR: Patient record not found!\n");
+		putchar('\n');
+		clearInputBuffer();
+
+	}
 }
 
 
@@ -299,7 +378,7 @@ void searchPatientByPatientNumber(const struct Patient patient[], int max)
 		printf("Number: %05d\n", patient[patientData].patientNumber);
 		printf("Phone : ");
 		displayFormattedPhone(patient[patientData].phone.number);
-		printf(" (%s)\n", patient[patientData].phone);
+		printf(" (%s)\n", patient[patientData].phone.description);
 		putchar('\n');
 	}
 	else
@@ -319,7 +398,7 @@ void searchPatientByPhoneNumber(const struct Patient patient[], int max)
 	char phoneNum[PHONE_LEN + 1] = { 0 };
 
 	printf("Search by phone number: ");
-	scanf("%s", phoneNum);
+	scanf(" %s", phoneNum);
 	clearInputBuffer();
 	putchar('\n');
 
@@ -338,7 +417,8 @@ void searchPatientByPhoneNumber(const struct Patient patient[], int max)
 
 	if (count == 0)
 	{
-		printf("*** No records found ***\n\n");
+		putchar('\n');
+		printf("*** No records found ***\n");
 	}
 
 	putchar('\n');
@@ -350,7 +430,19 @@ void searchPatientByPhoneNumber(const struct Patient patient[], int max)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 int nextPatientNumber(const struct Patient patient[], int max)
 {
+	int i, nextNumber, highestNumber = patient[0].patientNumber;
 
+	for (i = 0; i < max; i++)
+	{
+		if (patient[i].patientNumber > highestNumber)
+		{
+			highestNumber = patient[i].patientNumber;
+		}
+	}
+
+	nextNumber = highestNumber + 1;
+
+	return nextNumber;
 }
 
 
@@ -380,17 +472,23 @@ int findPatientIndexByPatientNum(int patientNumber,
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void inputPatient(struct Patient* patient)
 {
-	int patientNumber;
+	int i;
 	char name[NAME_LEN + 1] = { 0 };
 
 	printf("Patient Data Input\n"
 		"------------------\n");
-	printf("Number: ");
-	scanf("%d", &patientNumber);
+	printf("Number: %05d\n", patient->patientNumber);
 	printf("Name  : ");
-	scanf("%s", name);
+	scanf("%[^\n]", name);
 	clearInputBuffer();
 	putchar('\n');
+
+	for (i = 0; i < NAME_LEN + 1; i++)
+	{
+		patient->name[i] = name[i];
+	}
+
+	inputPhoneData(&patient->phone);
 }
 
 
@@ -398,7 +496,8 @@ void inputPatient(struct Patient* patient)
 // (ToDo: PUT THE FUNCTION DEFINITION BELOW)
 void inputPhoneData(struct Phone* phone)
 {
-	int selection;
+	int i, selection;
+	char phoneNumber[PHONE_LEN + 1];
 
 	printf("Phone Information\n"
 		"-----------------\n");
@@ -411,9 +510,69 @@ void inputPhoneData(struct Phone* phone)
 	scanf("%d", &selection);
 	putchar('\n');
 
-	if (selection > 0 && selection < 5)
+
+	switch (selection)
 	{
-		printf("*** New patient record added ***\n");
+	case 1:
+		strncpy(phone->description, "CELL", PHONE_DESC_LEN);
+
+		printf("Contact: %s\n", phone->description);
+
+		clearInputBuffer();
+		printf("Number : ");
+		scanf(" %s", phoneNumber);
+
+		for (i = 0; i < PHONE_LEN + 1; i++)
+		{
+			phone->number[i] = phoneNumber[i];
+		}
+
+		putchar('\n');
+
+		break;
+
+	case 2:
+		strncpy(phone->description, "HOME", PHONE_DESC_LEN);
+
+		printf("Contact: %s\n", phone->description);
+
+		clearInputBuffer();
+		printf("Number : ");
+		scanf(" %s", phoneNumber);
+
+		for (i = 0; i < PHONE_LEN + 1; i++)
+		{
+			phone->number[i] = phoneNumber[i];
+		}
+
+		putchar('\n');
+		
+		break;
+
+	case 3:
+		strncpy(phone->description, "WORK", PHONE_DESC_LEN);
+
+		printf("Contact: %s\n", phone->description);
+
+		clearInputBuffer();
+		printf("Number : ");
+		scanf(" %s", phoneNumber);
+
+		for (i = 0; i < PHONE_LEN + 1; i++)
+		{
+			phone->number[i] = phoneNumber[i];
+		}
+
+		putchar('\n');
+
+		break;
+
+	case 4:
+		strncpy(phone->description, "TBD", PHONE_DESC_LEN);
+
+		*phone->number = 0;
+
+		break;
 	}
-	putchar('\n');
+
 }
